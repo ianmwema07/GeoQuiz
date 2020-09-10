@@ -39,23 +39,36 @@ public class MainActivity extends AppCompatActivity {
         mQuestionTextView.setText(question);
 
         mTrueButton = (Button) findViewById(R.id.true_button);
-        mTrueButton.setOnClickListener(new View.OnClickListener(){
+        mTrueButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Correct",Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP,5,0);
-            toast.show();
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Correct", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 5, 0);
+                toast.show();
             }
         });
         mFalseButton = (Button) findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,R.string.incorrect_toast,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
 
             }
         });
 
+        mNextButton = (Button) findViewById(R.id.next_button);
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+        updateQuestion();
+    }
+
+        private void updateQuestion(){
+        int question = mQuestionBank[mCurrentIndex].getTextResId();
+        mQuestionTextView.setText(question);}
 
     }
-}
