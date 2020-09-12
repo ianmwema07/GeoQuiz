@@ -47,29 +47,24 @@
         android:layout_marginTop="15dp"
         >
 
-        <Button
+        <ImageButton
             android:id="@+id/previous_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="#0000ff"
-            android:textColor="#ffffff"
-            android:text="@string/previous_button"
-            android:drawableLeft="@drawable/arrow_left"
-            android:drawablePadding="4dp"
-            android:layout_marginRight="5dp"
+            android:src="@drawable/arrow_left"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/previous_button"
             />
 
-        <Button
-
+        <ImageButton
+        android:contentDescription="@string/next_button"
         android:id="@+id/next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="#0000ff"
-        android:textColor="#ffffff"
-        android:text="@string/next_button"
-        android:drawableRight="@drawable/arrow_right"
-        android:drawablePadding="4dp"
-            android:layout_marginLeft="5dp"
+        android:src="@drawable/arrow_right"
+            android:layout_marginLeft="10dp"
                 />
 
 
