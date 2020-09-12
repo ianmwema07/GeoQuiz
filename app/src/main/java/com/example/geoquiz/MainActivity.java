@@ -41,17 +41,14 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton = (Button) findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Correct", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 5, 0);
-                toast.show();
+                checkAnswer(true);
             }
         });
         mFalseButton = (Button) findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+            checkAnswer(false);
 
             }
         });
@@ -69,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
         private void updateQuestion(){
         int question = mQuestionBank[mCurrentIndex].getTextResId();
-        mQuestionTextView.setText(question);}
+        mQuestionTextView.setText(question);
+    }
+
+        private void checkAnswer(boolean userPressedTrue){
+        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+
+        int messageResId = 0;
+
+        if (userPressedTrue == answerIsTrue){
+            messageResId = R.string.correct_toast;
+        } else {
+            messageResId = R.string.incorrect_toast;
+        }
+        Toast.makeText(this, messageResId,Toast.LENGTH_SHORT).show();
+        }
 
     }
