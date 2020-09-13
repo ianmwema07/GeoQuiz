@@ -85,7 +85,24 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onResume(){
         super.onResume();
-        Log.d(TAG,"onResume()");
+        Log.d(TAG,"onResume() called");
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.d(TAG,"onPause called");
+
+    }
+
+    public void onStop(){
+        super.onStop();
+        Log.d(TAG,"onStop called");
+    }
+
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG,"onDestroy() called");
+
     }
 
         private void updateQuestion(){
