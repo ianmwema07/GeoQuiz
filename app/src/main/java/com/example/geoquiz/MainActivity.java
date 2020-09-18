@@ -3,6 +3,7 @@ package com.example.geoquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
+    private Button mCheatButton;
     private ImageButton mNextButton;
     private ImageButton mPreviousButton;
     private TextView mQuestionTextView;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState != null){
-            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
+           mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
         }
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
@@ -64,12 +66,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //start CheatActivity
+                Intent intent = new Intent(MainActivity.this, CheatActivity.class);
+                startActivity(intent);
 
+
+            }
+        });
         mNextButton = (ImageButton) findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+               mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
             }
         });
@@ -79,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                if(mCurrentIndex < 0)
+                    mCurrentIndex = mQuestionBank.length-1;
+
                 updateQuestion();
             }
         });
@@ -116,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
         private void updateQuestion(){
+        Log.d(TAG,"Updating question text",new Exception());
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
