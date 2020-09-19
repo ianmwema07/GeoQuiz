@@ -17,6 +17,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String KEY_INDEX = "index";
+    private static final int REQUEST_CODE_CHEAT = 0;
+
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 //start CheatActivity
                 Intent intent = new Intent(MainActivity.this, CheatActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE_CHEAT);
 
 
             }
